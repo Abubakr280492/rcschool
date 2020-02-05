@@ -1,0 +1,104 @@
+
+# Abubakr Abdullaev
+
+[Linked In](https://www.linkedin.com/in/abubakr-abdi-abdullaev-358557150/)
+#### +15132755276
+#### +998901107699
+
+## I would like to be one of the best full-stack developer in the world! 
+
+## Skills
++ HTML,CSS,SCSS
++ JavaScript
++ React
++ C++,Java
+
+
+  ## Code examples
+
+```React
+import React from 'react';
+import './App.css';
+import {Switch, Route, Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
+import Homepage from './pages/homepage/homepage.component';
+import ShopPage from './pages/shop/shop.component';
+import Header from './components/header/header.component';
+import SignInAndSignUpPage from './pages/sign-in-sign-up/sign-in-and-sign-up.component';
+import {auth, createUserProfileDocument} from './firebase/firebase.utils';
+import {setCurrentUser} from './redux/user/user.actions'; 
+import {selectCurrentUser} from './redux/user/user.selector';
+import CheckoutPage from './pages/checkout/checkout.component';
+
+class App extends React.Component {
+  unsubscribeFromAuth = null;
+  componentDidMount (){ 
+    const {setCurrentUser}= this.props;
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth =>{
+      if(userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        if(userRef) {
+         userRef.onSnapshot(snapShot => {
+          setCurrentUser({
+                id: snapShot.id,
+                ...snapShot.data()
+              });
+          });
+        } else {
+          alert('There cridential error, please fix it')
+        }
+      }
+      setCurrentUser(userAuth);
+    });  
+  }
+  componentWillUnmount(){
+    this.unsubscribeFromAuth();
+  }
+  //gonna send to the dom 
+  render() { 
+    return (
+      <div >
+          <Header/>
+        <Switch>
+          <Route exact path='/' component={Homepage}/>
+          <Route  path='/shop' component={ShopPage}/>  
+          <Route exact path='/checkout' component={CheckoutPage}/>  
+          <Route exact path='/signin' render={() => 
+            this.props.currentUser? (
+              <Redirect to='/'/>
+            ):(
+              <SignInAndSignUpPage />
+            )} 
+          />
+        </Switch>
+      </div>
+    );
+  }
+}
+//method to combine with redux state
+const mapStateToProps = state => ({
+  currentUser: selectCurrentUser(state)
+});
+ 
+//dispatches actions
+const mapDispatchToProps = dispatch => ({
+setCurrentUser: user => dispatch(setCurrentUser(user))
+});
+export default connect(mapStateToProps, mapDispatchToProps )(App);
+```
+## Experience 
++ React (React Router,Redux,Firebase)
++ HTML,CSS,SCSS,Bootstrap,JavaScript
++ On process (Redux-Saga,Hooks,Context API,GraphQL)
+
+## Education
+
+ + Inha Univercity in Tashkent(Computer Science and Engineering)
++ RSSchool (on process)
++ Udemy(Go Lang)
+ + Udacity
+ + FreeCodeCamp
+ 
+ ## English 
+ +    IELTS 7.0
+ 
