@@ -5,7 +5,6 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
         <img src="abdi.jpg" alt="lion">
         <h1>Abubakr Abdullaev</h1> 
         <p>[Linked In](https://www.linkedin.com/in/abubakr-abdi-abdullaev-358557150/)</p>    
@@ -25,15 +24,7 @@
         import React from 'react';
         import './App.css';
         import {Switch, Route, Redirect} from 'react-router-dom';
-        import {connect} from 'react-redux';
-        import Homepage from './pages/homepage/homepage.component';
-        import ShopPage from './pages/shop/shop.component';
-        import Header from './components/header/header.component';
-        import SignInAndSignUpPage from './pages/sign-in-sign-up/sign-in-and-sign-up.component';
-        import {auth, createUserProfileDocument} from './firebase/firebase.utils';
-        import {setCurrentUser} from './redux/user/user.actions'; 
-        import {selectCurrentUser} from './redux/user/user.selector';
-        import CheckoutPage from './pages/checkout/checkout.component';
+        
         class App extends React.Component {
           unsubscribeFromAuth = null;
           componentDidMount (){ 
@@ -102,7 +93,7 @@
       
      <h2>Education</h2>
         <ul>
-            <li>Inha Univercity in Tashkent(Computer Science and Engineering)</li>
+            <li>Inha University in Tashkent(Computer Science and Engineering)</li>
             <li>RSSchool (on process)</li>
             <li>Udemy(Go Lang)</li>
             <li>Udacity</li>
@@ -114,28 +105,47 @@
     
             <li> IELTS 7.0</li>
          </ul>
-
-        </div>
+      <footer>
+        <h4>2020. All rights reserved. Created by Abdullaev Abubakr. IUT 2020</h4>
+      </footer>
 <style> 
-    .container {
+*{
+  margin: 0 auto;
+  padding: 0 auto;
+  font-family: "Lato", sans-serif;
+}
+body{
+        width: 1024px;
         text-align: center;
+}
+img{
+        margin: 10px;
+        padding: 10px;
         background-color: aqua;
-
-    }
-    img{
         width:200px;
         border-radius: 45%;
     }
+h1{
+  margin: 10px;
+  padding: 10px;
+  background-color: blueviolet;
+}
+h2{
+  margin: 10px;
+  padding: 10px;
+  background-color:chartreuse;
+}
 
     ul li{
         text-decoration: none;
         list-style-type: none;
     }
+  footer{
+    margin: 12px;
+    padding: 20px;
+    background-color: blueviolet;
+  }
 </style>
-    
-
-
-
 </body>
 </html>
 
